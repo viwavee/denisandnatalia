@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>Максим & София — Свадьба 14.08.2026</title>
+  <title>Денис & Наталия — Свадьба 19.09.2026</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -68,11 +68,15 @@
 
     /* Фото на весь экран */
     .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: url('exe1.jpg') center center / cover no-repeat;
-      z-index: 0;
-    }
+        position: absolute;
+        inset: 0;
+        background-image: url('exe1.jpg');
+        background-position: center 25%;  /* ← было center center, теперь выше */
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 0;
+        }
+        
     /* Плавный градиент снизу для читаемости текста */
     .hero-bg::after {
       content: "";
@@ -352,57 +356,101 @@
       text-transform: uppercase;
     }
 
-    /* ===== ЛОКАЦИЯ ===== */
-    .location {
+    /* ===== МЕСТО ПРОВЕДЕНИЯ (ЗАГС + РЕСТОРАН) ===== */
+    .venue-section {
       background: var(--cream);
     }
-    .location-card {
+    .venue-block {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .venue-card {
       background: var(--warm-white);
       border-radius: 16px;
       box-shadow: 0 12px 40px var(--shadow);
-      max-width: 600px;
-      margin: 0 auto 24px;
-      padding: 36px 36px;
+      width: 100%;
+      padding: 32px 32px 28px;
       border: 1px solid var(--olive-pale);
       position: relative;
       overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
     }
-    .location-card::before {
+    .venue-card::before {
       content: "";
       position: absolute;
       top: 0; left: 0; width: 100%; height: 3px;
       background: linear-gradient(to right, var(--olive-pale), var(--olive), var(--olive-pale));
     }
-    .location-card:hover { transform: translateY(-5px); box-shadow: 0 20px 55px var(--shadow-hover); }
-    .location-name {
-      font-family: "Great Vibes", cursive;
-      font-size: 2.4em;
-      color: var(--olive-dark);
-      margin-bottom: 20px;
+    .venue-card:hover { transform: translateY(-4px); box-shadow: 0 20px 55px var(--shadow-hover); }
+    .venue-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
     }
-    .location-detail {
+    .venue-icon {
+      width: 48px; height: 48px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--olive);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15em;
+      box-shadow: 0 6px 16px var(--olive-glow);
+    }
+    .venue-name {
+      font-family: "Great Vibes", cursive;
+      font-size: 2em;
+      color: var(--olive-dark);
+      line-height: 1.15;
+    }
+    .venue-tag {
+      font-family: "Jost", sans-serif;
+      font-size: 0.68em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--olive-muted);
+      margin-top: 4px;
+    }
+    .location-detail, .restaurant-detail {
       display: flex;
       align-items: flex-start;
       gap: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       text-align: left;
     }
-    .location-detail i {
+    .location-detail i, .restaurant-detail i {
       color: var(--olive);
-      font-size: 1.05em;
+      font-size: 1em;
       margin-top: 4px;
       flex-shrink: 0;
-      width: 18px;
+      width: 16px;
     }
-    .location-detail p { color: var(--text-mid); font-size: 1em; line-height: 1.7; }
-    .location-detail strong { color: var(--text-dark); }
+    .location-detail p, .restaurant-detail p { color: var(--text-mid); font-size: 0.95em; line-height: 1.7; }
+    .location-detail strong, .restaurant-detail strong { color: var(--text-dark); }
 
+    .venue-map {
+      margin-top: 18px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--olive-pale);
+    }
+    .venue-map iframe { width: 100%; height: 220px; display: block; border: none; }
+
+    .map-btn-wrap {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
     .map-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 20px;
+      margin-top: 18px;
       background: var(--olive);
       color: #ffffff;
       text-decoration: none;
@@ -415,19 +463,57 @@
     }
     .map-btn:hover { background: var(--olive-dark); transform: translateY(-2px); }
 
+    .venue-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 0;
+      color: var(--olive);
+    }
+    .venue-connector .venue-connector-line {
+      width: 1px; height: 26px;
+      background: var(--olive-pale);
+    }
+    .venue-connector i { font-size: 0.9em; }
+    .venue-connector span {
+      font-size: 0.68em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--olive-muted);
+    }
+
     /* ===== РАСПИСАНИЕ ===== */
     .schedule-section {
       background: var(--off-white);
+      position: relative;
+      overflow: hidden;
     }
+    .schedule-branch {
+      position: absolute;
+      z-index: 0;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .schedule-branch svg { display: block; }
+    .schedule-branch.left-branch  { top: 60px; left: 8px; }
+    .schedule-branch.right-branch { top: 60px; right: 8px; }
+    @media (max-width: 600px) {
+      .schedule-branch.left-branch  { left: 2px; opacity: 0.45; }
+      .schedule-branch.right-branch { right: 2px; opacity: 0.45; }
+      .schedule-branch svg { width: 50px !important; height: 320px !important; }
+    }
+
     .timeline {
       max-width: 520px;
       margin: 0 auto;
       position: relative;
+      z-index: 1;
     }
     .timeline::before {
       content: "";
       position: absolute;
-      left: 82px; top: 8px; bottom: 8px;
+      left: 113px; top: 8px; bottom: 8px;
       width: 1px;
       background: var(--olive-pale);
     }
@@ -435,7 +521,7 @@
       display: flex;
       align-items: flex-start;
       gap: 24px;
-      margin-bottom: 32px;
+      margin-bottom: 34px;
       opacity: 0;
       transform: translateY(16px);
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -448,20 +534,23 @@
       font-weight: 500;
       color: var(--olive);
       text-align: right;
-      padding-top: 2px;
+      padding-top: 12px;
       letter-spacing: 1px;
     }
-    .timeline-dot {
-      width: 10px; height: 10px;
+    .timeline-icon {
+      width: 46px; height: 46px;
       background: var(--warm-white);
       border: 2px solid var(--olive);
+      color: var(--olive);
       border-radius: 50%;
       flex-shrink: 0;
-      margin-top: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.05em;
       position: relative;
       z-index: 1;
+      box-shadow: 0 6px 16px var(--shadow);
     }
-    .timeline-content { flex: 1; text-align: left; }
+    .timeline-content { flex: 1; text-align: left; padding-top: 8px; }
     .timeline-title {
       font-family: "Cormorant Garamond", serif;
       font-size: 1.15em;
@@ -476,45 +565,6 @@
       line-height: 1.55;
     }
 
-    /* ===== РЕСТОРАН ===== */
-    .restaurant-section {
-      background: var(--cream);
-    }
-    .restaurant-card {
-      max-width: 580px;
-      margin: 0 auto 32px;
-      background: var(--warm-white);
-      border: 1px solid var(--olive-pale);
-      border-radius: 16px;
-      padding: 32px 36px;
-      box-shadow: 0 8px 30px var(--shadow);
-    }
-    .restaurant-name {
-      font-family: "Great Vibes", cursive;
-      font-size: 2.4em;
-      color: var(--olive-dark);
-      margin-bottom: 16px;
-    }
-    .restaurant-detail {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 12px;
-      font-size: 0.95em;
-      text-align: left;
-      color: var(--text-mid);
-    }
-    .restaurant-detail i { color: var(--olive); margin-top: 3px; width: 16px; flex-shrink: 0; }
-    .map-wrapper {
-      max-width: 580px;
-      margin: 0 auto;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--olive-pale);
-      box-shadow: 0 8px 28px var(--shadow);
-    }
-    .map-wrapper iframe { width: 100%; height: 300px; display: block; border: none; }
-
     /* ===== ДРЕССКОД ===== */
     .dresscode-section { background: var(--off-white); }
     .dresscode-subtitle {
@@ -524,56 +574,14 @@
       margin-bottom: 32px;
       font-style: italic;
     }
-    .palette {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 18px;
-      margin-bottom: 36px;
-    }
-    .palette-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .palette-item.visible { opacity: 1; transform: translateY(0); }
-    .palette-circle {
-      width: 58px; height: 58px;
-      border-radius: 50%;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.10);
-      border: 3px solid rgba(255,255,255,0.9);
-    }
-    .palette-label {
-      font-size: 0.72em;
-      color: var(--text-light);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .dresscode-rules {
-      max-width: 460px;
+    .dresscode-text {
+      max-width: 560px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.25em;
+      color: var(--text-mid);
+      line-height: 1.85;
     }
-    .rule {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.9em;
-      color: var(--text-dark);
-      background: var(--cream);
-      border-radius: 10px;
-      padding: 12px 18px;
-      border: 1px solid var(--olive-pale);
-      text-align: left;
-    }
-    .rule i.ok { color: var(--olive); }
-    .rule i.no { color: #b8705a; }
 
     /* ===== RSVP ===== */
     .rsvp { background: var(--cream); }
@@ -702,32 +710,72 @@
     @media (max-width: 600px) {
       section { padding: 60px 18px; }
       .rsvp-form { padding: 32px 20px; }
-      .location-card, .restaurant-card { padding: 26px 20px; }
-      .timeline::before { left: 68px; }
+      .venue-card { padding: 26px 22px; }
+      .venue-card-header { gap: 12px; }
+      .venue-name { font-size: 1.7em; }
+      .timeline-time { min-width: 50px; font-size: 0.98em; }
+      .timeline-item { gap: 16px; }
+      .timeline::before { left: 82px; }
+      .schedule-branch.top-left, .schedule-branch.bottom-right { width: 90px; opacity: 0.4; }
+    }
+
+    /* ===== ДЕКОРАТИВНЫЕ ВЕТОЧКИ ПО КРАЯМ ===== */
+    .branch-deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+    .branch-deco svg { display: block; }
+    .branch-deco--left  { left: 0; }
+    .branch-deco--right { right: 0; }
+
+    /* Размеры */
+    .branch-deco--sm  { width: 60px; }
+    .branch-deco--md  { width: 80px; }
+    .branch-deco--lg  { width: 100px; }
+    .branch-deco--xl  { width: 120px; }
+
+    /* Позиции по вертикали */
+    .branch-deco--top    { top: 0; }
+    .branch-deco--mid    { top: 50%; transform: translateY(-50%); }
+    .branch-deco--bottom { bottom: 0; }
+    .branch-deco--right.branch-deco--mid { transform: translateY(-50%) scaleX(-1); }
+    .branch-deco--right:not(.branch-deco--mid) { transform: scaleX(-1); }
+
+    /* Секции с веточками — обрезка по краям */
+    .schedule-section,
+    .rsvp,
+    footer {
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .branch-deco { opacity: 0.3; }
+      .branch-deco--sm  { width: 40px; }
+      .branch-deco--md  { width: 50px; }
+      .branch-deco--lg  { width: 60px; }
+      .branch-deco--xl  { width: 70px; }
     }
   </style>
+<base target="_blank">
 </head>
 <body>
 
 <!-- ===== 1. ГЛАВНЫЙ ЭКРАН ===== -->
 <section class="hero">
   <!-- Декоративная ветка сверху -->
-  <div class="hero-branch-top">
-    <svg viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100 75 C100 75 40 55 20 30 C10 18 15 5 30 8 C45 11 60 28 80 38 C90 43 100 45 100 45 C100 45 110 43 120 38 C140 28 155 11 170 8 C185 5 190 18 180 30 C160 55 100 75 100 75Z" fill="rgba(255,255,255,0.12)"/>
-      <path d="M100 60 C85 50 65 42 50 32 C38 24 32 14 42 10 C52 6 68 20 82 30 L100 42 L118 30 C132 20 148 6 158 10 C168 14 162 24 150 32 C135 42 115 50 100 60Z" fill="rgba(255,255,255,0.08)"/>
-    </svg>
-  </div>
+  
 
   <div class="hero-bg"></div>
 
   <div class="hero-content">
     <div class="hero-eyebrow">Приглашаем на нашу свадьбу</div>
-    <div class="couple-name">Максим &amp; София</div>
+    <div class="couple-name">Денис &amp; Наталия</div>
     <div class="hero-divider">
       <span class="hero-divider-icon"><i class="fas fa-leaf"></i></span>
     </div>
-    <div class="wedding-date">14 · 08 · 2026</div>
+    <div class="wedding-date">19 · 09 · 2026</div>
     <div class="hero-cta" onclick="document.getElementById('welcome').scrollIntoView({behavior:'smooth'})">
       <span>Нажмите и прочтите наше приглашение</span>
       <i class="fas fa-chevron-down"></i>
@@ -737,6 +785,28 @@
 
 <!-- ===== 2. ПРИВЕТСТВИЕ ===== -->
 <section class="welcome-section" id="welcome">
+  <div class="branch-deco branch-deco--left branch-deco--md branch-deco--top">
+    <svg viewBox="0 0 90 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 15 65 40 Q70 65 50 85 Q30 105 40 130 Q48 155 35 180" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="20" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 20)"/>
+  <ellipse cx="66" cy="55" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 55)"/>
+  <ellipse cx="52" cy="80" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 80)"/>
+  <ellipse cx="42" cy="115" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 115)"/>
+  <ellipse cx="38" cy="150" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(-20 38 150)"/>
+  <ellipse cx="32" cy="175" rx="7" ry="3.5" fill="#C5CEA8" opacity="0.6" transform="rotate(20 32 175)"/>
+</svg>
+  </div>
+  <div class="branch-deco branch-deco--right branch-deco--md branch-deco--bottom">
+    <svg viewBox="0 0 90 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 15 65 40 Q70 65 50 85 Q30 105 40 130 Q48 155 35 180" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="20" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 20)"/>
+  <ellipse cx="66" cy="55" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 55)"/>
+  <ellipse cx="52" cy="80" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 80)"/>
+  <ellipse cx="42" cy="115" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 115)"/>
+  <ellipse cx="38" cy="150" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(-20 38 150)"/>
+  <ellipse cx="32" cy="175" rx="7" ry="3.5" fill="#C5CEA8" opacity="0.6" transform="rotate(20 32 175)"/>
+</svg>
+  </div>
   <span class="section-label">Дорогие гости</span>
   <h2 class="section-title">Вы приглашены!</h2>
   <div class="divider"><div class="divider-dot"></div></div>
@@ -758,35 +828,58 @@
 
 <!-- ===== 3. ДАТА / КАЛЕНДАРЬ ===== -->
 <section class="calendar-section" id="calendar">
+  
+    
+  </div>
   <span class="section-label">Запомните дату</span>
-  <h2 class="section-title">Август 2026</h2>
+  <h2 class="section-title">Сентябрь 2026</h2>
   <div class="calendar-container fade-in">
-    <div class="calendar-header">Август</div>
+    <div class="calendar-header">Сентябрь</div>
     <div class="calendar-weekdays">
       <div class="weekday">Пн</div><div class="weekday">Вт</div><div class="weekday">Ср</div>
       <div class="weekday">Чт</div><div class="weekday">Пт</div><div class="weekday">Сб</div><div class="weekday">Вс</div>
     </div>
     <div class="calendar-days">
-      <!-- Август 2026: 1 = суббота → 5 пустых -->
+      <!-- Сентябрь 2026: 1 = вторник → 1 пустая -->
       <div class="calendar-day" style="visibility:hidden"></div>
-      <div class="calendar-day" style="visibility:hidden"></div>
-      <div class="calendar-day" style="visibility:hidden"></div>
-      <div class="calendar-day" style="visibility:hidden"></div>
-      <div class="calendar-day" style="visibility:hidden"></div>
-      <div class="calendar-day">1</div><div class="calendar-day">2</div>
-      <div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div>
-      <div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div>
-      <div class="calendar-day wedding-day">14</div>
-      <div class="calendar-day">15</div><div class="calendar-day">16</div>
-      <div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div>
-      <div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
-      <div class="calendar-day">31</div>
+      <div class="calendar-day">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div>
+      <div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div>
+      <div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div>
+      <div class="calendar-day wedding-day">19</div>
+      <div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div>
+      <div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div>
     </div>
   </div>
 </section>
 
 <!-- ===== 4. ОБРАТНЫЙ ОТСЧЁТ ===== -->
 <section class="countdown" id="countdown">
+  <div class="branch-deco branch-deco--left branch-deco--lg branch-deco--top" style="opacity:0.25;">
+    <svg viewBox="0 0 90 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 20 65 50 Q70 80 50 105 Q30 130 40 160 Q50 190 35 215 Q20 240 30 270 Q35 285 32 280" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="25" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 25)"/>
+  <ellipse cx="66" cy="65" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 65)"/>
+  <ellipse cx="52" cy="95" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 95)"/>
+  <ellipse cx="42" cy="135" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 135)"/>
+  <ellipse cx="46" cy="175" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-25 46 175)"/>
+  <ellipse cx="32" cy="205" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(20 32 205)"/>
+  <ellipse cx="28" cy="245" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-15 28 245)"/>
+  <ellipse cx="22" cy="275" rx="8" ry="4" fill="#C5CEA8" opacity="0.6" transform="rotate(25 22 275)"/>
+</svg>
+  </div>
+  <div class="branch-deco branch-deco--right branch-deco--lg branch-deco--bottom" style="opacity:0.25;">
+    <svg viewBox="0 0 90 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 20 65 50 Q70 80 50 105 Q30 130 40 160 Q50 190 35 215 Q20 240 30 270 Q35 285 32 280" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="25" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 25)"/>
+  <ellipse cx="66" cy="65" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 65)"/>
+  <ellipse cx="52" cy="95" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 95)"/>
+  <ellipse cx="42" cy="135" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 135)"/>
+  <ellipse cx="46" cy="175" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-25 46 175)"/>
+  <ellipse cx="32" cy="205" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(20 32 205)"/>
+  <ellipse cx="28" cy="245" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-15 28 245)"/>
+  <ellipse cx="22" cy="275" rx="8" ry="4" fill="#C5CEA8" opacity="0.6" transform="rotate(25 22 275)"/>
+</svg>
+  </div>
   <span class="section-label" style="color:rgba(255,255,255,0.55)">Уже совсем скоро</span>
   <h2 class="section-title">До свадьбы осталось</h2>
   <div class="countdown-numbers">
@@ -797,147 +890,226 @@
   </div>
 </section>
 
-<!-- ===== 5. МЕСТО РЕГИСТРАЦИИ ===== -->
-<section class="location" id="location">
+<!-- ===== 5. МЕСТО ПРОВЕДЕНИЯ (ЗАГС + РЕСТОРАН) ===== -->
+<section class="venue-section" id="venue">
+  <div class="branch-deco branch-deco--left branch-deco--md branch-deco--top">
+    <svg viewBox="0 0 90 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 20 65 50 Q70 80 50 105 Q30 130 40 160 Q50 190 35 215 Q20 240 30 270 Q35 285 32 280" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="25" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 25)"/>
+  <ellipse cx="66" cy="65" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 65)"/>
+  <ellipse cx="52" cy="95" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 95)"/>
+  <ellipse cx="42" cy="135" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 135)"/>
+  <ellipse cx="46" cy="175" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-25 46 175)"/>
+  <ellipse cx="32" cy="205" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(20 32 205)"/>
+  <ellipse cx="28" cy="245" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-15 28 245)"/>
+  <ellipse cx="22" cy="275" rx="8" ry="4" fill="#C5CEA8" opacity="0.6" transform="rotate(25 22 275)"/>
+</svg>
+  </div>
+  <div class="branch-deco branch-deco--right branch-deco--md branch-deco--bottom">
+    <svg viewBox="0 0 90 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 20 65 50 Q70 80 50 105 Q30 130 40 160 Q50 190 35 215 Q20 240 30 270 Q35 285 32 280" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="25" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 25)"/>
+  <ellipse cx="66" cy="65" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 65)"/>
+  <ellipse cx="52" cy="95" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 95)"/>
+  <ellipse cx="42" cy="135" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 135)"/>
+  <ellipse cx="46" cy="175" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-25 46 175)"/>
+  <ellipse cx="32" cy="205" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(20 32 205)"/>
+  <ellipse cx="28" cy="245" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-15 28 245)"/>
+  <ellipse cx="22" cy="275" rx="8" ry="4" fill="#C5CEA8" opacity="0.6" transform="rotate(25 22 275)"/>
+</svg>
+  </div>
   <span class="section-label">Где это будет</span>
-  <h2 class="section-title">Локация</h2>
+  <h2 class="section-title">Место проведения</h2>
   <div class="divider"><div class="divider-dot"></div></div>
-  <div class="location-card fade-in">
-    <div class="location-name">Дворец бракосочетания №1</div>
-    <div class="location-detail">
-      <i class="fas fa-map-marker-alt"></i>
-      <p><strong>Адрес:</strong> Английская набережная, 28, Санкт-Петербург</p>
+
+  <div class="venue-block">
+
+    <!-- ЗАГС -->
+    <div class="venue-card fade-in">
+      <div class="venue-card-header">
+        <div class="venue-icon"><i class="fas fa-landmark"></i></div>
+        <div>
+          <div class="venue-name">ЗАГС</div>
+          <div class="venue-tag">Регистрация · 12:30</div>
+        </div>
+      </div>
+      <div class="location-detail">
+        <i class="fas fa-map-marker-alt"></i>
+        <p><strong>Адрес:</strong> ул. Набережная, д. 20, г. Мариинский Посад</p>
+      </div>
+      <div class="location-detail">
+        <i class="fas fa-info-circle"></i>
+        <p>Просим гостей прибыть за 10–15 минут до начала.</p>
+      </div>
+      <div class="venue-map">
+        <iframe src="https://yandex.ru/map-widget/v1/?text=Чувашия%20Мариинский%20Посад%20улица%20Набережная%2020%20ЗАГС&z=17&l=map&pt=47.7142,56.1116,pm2rdl1"
+          allowfullscreen loading="lazy" title="ЗАГС на карте" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="map-btn-wrap">
+        <a class="map-btn" href="https://maps.yandex.ru/?text=Мариинский+Посад+Набережная+20" target="_blank">
+          <i class="fas fa-map"></i> Открыть в Яндекс Картах
+        </a>
+      </div>
     </div>
-    <div class="location-detail">
-      <i class="fas fa-clock"></i>
-      <p><strong>Начало регистрации:</strong> 13:00</p>
+
+    <div class="venue-connector">
+      <div class="venue-connector-line"></div>
+      <i class="fas fa-car-side"></i>
+      <span>Далее — банкет</span>
+      <div class="venue-connector-line"></div>
     </div>
-    <div class="location-detail">
-      <i class="fas fa-info-circle"></i>
-      <p>Просим гостей прибыть за 10–15 минут до начала.</p>
+
+    <!-- РЕСТОРАН -->
+    <div class="venue-card fade-in">
+      <div class="venue-card-header">
+        <div class="venue-icon"><i class="fas fa-champagne-glasses"></i></div>
+        <div>
+          <div class="venue-name">Ресторан</div>
+          <div class="venue-tag">Банкет · 17:00</div>
+        </div>
+      </div>
+      <div class="restaurant-detail">
+        <i class="fas fa-utensils"></i>
+        <p><strong>«Ванильное небо»</strong>, зал «Встреча»</p>
+      </div>
+      <div class="restaurant-detail">
+        <i class="fas fa-map-marker-alt"></i>
+        <p><strong>Адрес:</strong> г. Чебоксары, пр. Московский, 38 корп. 3</p>
+      </div>
+      <div class="venue-map">
+        <iframe src="https://yandex.ru/map-widget/v1/?text=Чебоксары%20проспект%20Московский%2038%20корп%203&z=17&l=map&pt=47.2045,56.1448,pm2rdl1"
+          allowfullscreen loading="lazy" title="Ресторан на карте" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="map-btn-wrap">
+        <a class="map-btn" href="https://maps.yandex.ru/?text=Чебоксары+проспект+Московский+38+корп+3" target="_blank">
+          <i class="fas fa-map"></i> Открыть в Яндекс Картах
+        </a>
+      </div>
     </div>
-    <a class="map-btn" href="https://maps.yandex.ru/?text=Английская+набережная+28+Санкт-Петербург" target="_blank">
-      <i class="fas fa-map"></i> Открыть в Яндекс Картах
-    </a>
+
   </div>
 </section>
 
 <!-- ===== 6. ПРОГРАММА ДНЯ ===== -->
 <section class="schedule-section" id="schedule">
+  <div class="branch-deco branch-deco--left branch-deco--xl branch-deco--top">
+    <svg viewBox="0 0 90 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 20 65 50 Q70 85 50 115 Q30 145 40 180 Q50 215 35 250 Q20 285 30 320 Q38 355 28 380" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="25" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 25)"/>
+  <ellipse cx="66" cy="70" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 70)"/>
+  <ellipse cx="52" cy="105" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 105)"/>
+  <ellipse cx="42" cy="150" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 150)"/>
+  <ellipse cx="46" cy="195" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-25 46 195)"/>
+  <ellipse cx="32" cy="235" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(20 32 235)"/>
+  <ellipse cx="28" cy="280" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-15 28 280)"/>
+  <ellipse cx="22" cy="325" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.6" transform="rotate(25 22 325)"/>
+  <ellipse cx="18" cy="365" rx="8" ry="4" fill="#C5CEA8" opacity="0.65" transform="rotate(-10 18 365)"/>
+</svg>
+  </div>
+  <div class="branch-deco branch-deco--right branch-deco--xl branch-deco--bottom">
+    <svg viewBox="0 0 90 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 20 65 50 Q70 85 50 115 Q30 145 40 180 Q50 215 35 250 Q20 285 30 320 Q38 355 28 380" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="25" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 25)"/>
+  <ellipse cx="66" cy="70" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 70)"/>
+  <ellipse cx="52" cy="105" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 105)"/>
+  <ellipse cx="42" cy="150" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 150)"/>
+  <ellipse cx="46" cy="195" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-25 46 195)"/>
+  <ellipse cx="32" cy="235" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(20 32 235)"/>
+  <ellipse cx="28" cy="280" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-15 28 280)"/>
+  <ellipse cx="22" cy="325" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.6" transform="rotate(25 22 325)"/>
+  <ellipse cx="18" cy="365" rx="8" ry="4" fill="#C5CEA8" opacity="0.65" transform="rotate(-10 18 365)"/>
+</svg>
+  </div>
+
   <span class="section-label">Программа</span>
   <h2 class="section-title">День торжества</h2>
   <div class="divider"><div class="divider-dot"></div></div>
   <div class="timeline">
     <div class="timeline-item">
-      <div class="timeline-time">12:30</div>
-      <div class="timeline-dot"></div>
+      <div class="timeline-time">12:00</div>
+      <div class="timeline-icon"><i class="fas fa-users"></i></div>
       <div class="timeline-content">
         <div class="timeline-title">Сбор гостей</div>
-        <div class="timeline-desc">Встречаемся у Дворца бракосочетания, фотографии на набережной</div>
+        <div class="timeline-desc">Встречаемся у ЗАГСа, сбор гостей</div>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-time">13:00</div>
-      <div class="timeline-dot"></div>
+      <div class="timeline-time">12:30</div>
+      <div class="timeline-icon"><i class="fas fa-heart"></i></div>
       <div class="timeline-content">
         <div class="timeline-title">Церемония регистрации</div>
         <div class="timeline-desc">Торжественная роспись и обмен кольцами</div>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-time">14:00</div>
-      <div class="timeline-dot"></div>
+      <div class="timeline-time">13:00</div>
+      <div class="timeline-icon"><i class="fas fa-camera"></i></div>
       <div class="timeline-content">
-        <div class="timeline-title">Фотопрогулка</div>
-        <div class="timeline-desc">По Английской набережной и Исаакиевской площади</div>
+        <div class="timeline-title">Фотосессия</div>
+        <div class="timeline-desc">Совместная фотосъёмка</div>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-time">16:00</div>
-      <div class="timeline-dot"></div>
+      <div class="timeline-time">17:00</div>
+      <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
       <div class="timeline-content">
-        <div class="timeline-title">Банкет</div>
-        <div class="timeline-desc">Переезд в ресторан «Белая ночь» — приветственный бокал шампанского</div>
+        <div class="timeline-title">Праздничный банкет</div>
+        <div class="timeline-desc">Начало банкета в ресторане «Ванильное небо»</div>
       </div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-time">16:30</div>
-      <div class="timeline-dot"></div>
+      <div class="timeline-time">22:00</div>
+      <div class="timeline-icon"><i class="fas fa-star"></i></div>
       <div class="timeline-content">
-        <div class="timeline-title">Торжественный ужин</div>
-        <div class="timeline-desc">Первый танец молодых, поздравления, тосты и праздничный стол</div>
+        <div class="timeline-title">Завершение вечера</div>
+        <div class="timeline-desc">Окончание торжества</div>
       </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-time">19:00</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="timeline-title">Торт и танцы</div>
-        <div class="timeline-desc">Разрезание свадебного торта и дискотека</div>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-time">23:30</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
-        <div class="timeline-title">Финальный вальс</div>
-        <div class="timeline-desc">Последний танец и запуск воздушных фонариков</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 7. РЕСТОРАН ===== -->
-<section class="restaurant-section" id="restaurant">
-  <span class="section-label">Банкет</span>
-  <h2 class="section-title">Ресторан</h2>
-  <div class="divider"><div class="divider-dot"></div></div>
-  <div class="restaurant-card fade-in">
-    <div class="restaurant-name">Белая ночь</div>
-    <div class="restaurant-detail">
-      <i class="fas fa-map-marker-alt"></i>
-      <p><strong>Адрес:</strong> набережная реки Мойки, 58, Санкт-Петербург</p>
-    </div>
-    <div class="restaurant-detail">
-      <i class="fas fa-clock"></i>
-      <p><strong>Начало банкета:</strong> 16:00</p>
-    </div>
-  </div>
-  <div class="map-wrapper fade-in">
-    <iframe src="https://yandex.ru/map-widget/v1/?ll=30.315%2C59.933&z=16&pt=30.315%2C59.933%2Cpm2rdm&l=map"
-      allowfullscreen loading="lazy" title="Ресторан на карте" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </section>
 
 <!-- ===== 8. ДРЕССКОД ===== -->
 <section class="dresscode-section" id="dresscode">
+  
+  </div>
   <span class="section-label">Стиль вечера</span>
   <h2 class="section-title">Дресс-код</h2>
   <div class="divider"><div class="divider-dot"></div></div>
-  <p class="dresscode-subtitle">Пожалуйста, выбирайте наряды в нашей цветовой гамме</p>
-  <div class="palette">
-    <div class="palette-item">
-      <div class="palette-circle" style="background:#F5EFE8;"></div>
-      <div class="palette-label">Айвори</div>
-    </div>
-    <div class="palette-item">
-      <div class="palette-circle" style="background:#D4DBCA;"></div>
-      <div class="palette-label">Шалфей</div>
-    </div>
-    <div class="palette-item">
-      <div class="palette-circle" style="background:#7C8C5E;"></div>
-      <div class="palette-label">Оливковый</div>
-    </div>
-    <div class="palette-item">
-      <div class="palette-circle" style="background:#E8E0D0;"></div>
-      <div class="palette-label">Бежевый</div>
-    </div>
-  </div>
-  
+  <p class="dresscode-text">
+    Мы не устанавливаем строгих правил по цветам — выбирайте те, которые близки вашему сердцу. Дресс-кода на свадьбе не будет.
+  </p>
 </section>
 
 <!-- ===== 9. RSVP ===== -->
 <section class="rsvp" id="rsvp">
+  <div class="branch-deco branch-deco--left branch-deco--lg branch-deco--top">
+    <svg viewBox="0 0 90 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 20 65 50 Q70 85 50 115 Q30 145 40 180 Q50 215 35 250 Q20 285 30 320 Q38 355 28 380" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="25" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 25)"/>
+  <ellipse cx="66" cy="70" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 70)"/>
+  <ellipse cx="52" cy="105" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 105)"/>
+  <ellipse cx="42" cy="150" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 150)"/>
+  <ellipse cx="46" cy="195" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-25 46 195)"/>
+  <ellipse cx="32" cy="235" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(20 32 235)"/>
+  <ellipse cx="28" cy="280" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-15 28 280)"/>
+  <ellipse cx="22" cy="325" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.6" transform="rotate(25 22 325)"/>
+  <ellipse cx="18" cy="365" rx="8" ry="4" fill="#C5CEA8" opacity="0.65" transform="rotate(-10 18 365)"/>
+</svg>
+  </div>
+  <div class="branch-deco branch-deco--right branch-deco--lg branch-deco--bottom">
+    <svg viewBox="0 0 90 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M85 0 Q60 20 65 50 Q70 85 50 115 Q30 145 40 180 Q50 215 35 250 Q20 285 30 320 Q38 355 28 380" stroke="#A3AF86" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="62" cy="25" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-20 62 25)"/>
+  <ellipse cx="66" cy="70" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(10 66 70)"/>
+  <ellipse cx="52" cy="105" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-35 52 105)"/>
+  <ellipse cx="42" cy="150" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.65" transform="rotate(15 42 150)"/>
+  <ellipse cx="46" cy="195" rx="10" ry="5" fill="#C5CEA8" opacity="0.75" transform="rotate(-25 46 195)"/>
+  <ellipse cx="32" cy="235" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.7" transform="rotate(20 32 235)"/>
+  <ellipse cx="28" cy="280" rx="10" ry="5" fill="#C5CEA8" opacity="0.8" transform="rotate(-15 28 280)"/>
+  <ellipse cx="22" cy="325" rx="9" ry="4.5" fill="#C5CEA8" opacity="0.6" transform="rotate(25 22 325)"/>
+  <ellipse cx="18" cy="365" rx="8" ry="4" fill="#C5CEA8" opacity="0.65" transform="rotate(-10 18 365)"/>
+</svg>
+  </div>
   <span class="section-label">Ваш ответ</span>
   <h2 class="section-title">Анкета</h2>
   <div class="divider"><div class="divider-dot"></div></div>
@@ -957,18 +1129,15 @@
       <div class="form-error" id="attendanceError">Пожалуйста, выберите вариант</div>
     </div>
     <div class="form-group">
-      <label class="form-label">Предпочтения по напиткам</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="drinks" value="Красное вино"> Красное вино</label>
-        <label><input type="checkbox" name="drinks" value="Белое вино"> Белое вино</label>
-        <label><input type="checkbox" name="drinks" value="Шампанское"> Шампанское</label>
-        <label><input type="checkbox" name="drinks" value="Водка"> Водка</label>
-        <label><input type="checkbox" name="drinks" value="Не употребляю алкоголь"> Не употребляю алкоголь</label>
+      <label class="form-label">Будете ли вы с парой? (+1)</label>
+      <div class="radio-group">
+        <label><input type="radio" name="plusOne" value="Да"> Да</label>
+        <label><input type="radio" name="plusOne" value="Нет"> Нет</label>
       </div>
     </div>
     <div class="deadline-note">
       <i class="fas fa-clock"></i>
-      <strong>Просьба подтвердить участие до 3 августа 2026 года</strong>
+      <strong>Просьба подтвердить участие до 12 сентября 2026 года</strong>
     </div>
     <button type="submit" class="submit-btn">
       <i class="fa-solid fa-paper-plane"></i> Отправить ответ
@@ -980,16 +1149,17 @@
 </section>
 
 <!-- ===== ФУТЕР ===== -->
-<footer>
+<footer style="position:relative; overflow:hidden;">  
+  </div>
   <p style="opacity:0.6; letter-spacing:3px; font-size:0.75em; text-transform:uppercase;">С любовью</p>
-  <div class="footer-names">Максим &amp; София</div>
-  <p class="footer-date">14 · 08 · 2026</p>
+  <div class="footer-names">Денис &amp; Наталия</div>
+  <p class="footer-date">19 · 09 · 2026</p>
 </footer>
 
 <script>
 // ===== ОБРАТНЫЙ ОТСЧЁТ =====
 function updateCountdown() {
-  const weddingDate = new Date('2026-08-14T13:00:00+03:00').getTime();
+  const weddingDate = new Date('2026-09-19T12:30:00+03:00').getTime();
   const now = new Date().getTime();
   const diff = weddingDate - now;
   if (diff > 0) {
@@ -1014,6 +1184,7 @@ const errorMsg = document.getElementById("errorStatus");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   document.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
+  document.querySelectorAll('.form-input.error').forEach(el => el.classList.remove('error'));
   let isValid = true;
   const guestsNames = document.getElementById('guestsNames').value.trim();
   if (!guestsNames || !/^[\sа-яА-ЯёЁa-zA-Z,\-']{3,100}$/.test(guestsNames)) {
@@ -1029,11 +1200,11 @@ form.addEventListener("submit", async (e) => {
   if (!isValid) { document.querySelector('.form-group.error')?.scrollIntoView({behavior:'smooth',block:'center'}); return; }
   loading.style.display = "block";
   successMsg.style.display = errorMsg.style.display = "none";
-  const drinks = Array.from(document.querySelectorAll('input[name="drinks"]:checked')).map(c => c.value).join(', ') || "Не указано";
+  const plusOne = form.plusOne.value || "Не указано";
   const scriptURL = ""; // ← Вставьте URL Google Apps Script
   try {
     if (scriptURL) {
-      await fetch(scriptURL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify({guestsNames, attendance, drinks}) });
+      await fetch(scriptURL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify({guestsNames, attendance, plusOne}) });
     }
     loading.style.display = "none";
     successMsg.style.display = "block";
@@ -1053,7 +1224,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.fade-in, .calendar-container, .dresscode-rules').forEach(el => {
+document.querySelectorAll('.fade-in, .calendar-container').forEach(el => {
   if (!el.classList.contains('fade-in')) el.classList.add('fade-in');
   observer.observe(el);
 });
@@ -1067,16 +1238,6 @@ const timelineObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08 });
 document.querySelectorAll('.timeline-item').forEach(el => timelineObserver.observe(el));
-
-const paletteObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      paletteObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.palette-item').forEach(el => paletteObserver.observe(el));
 </script>
 </body>
 </html>
