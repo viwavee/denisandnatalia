@@ -1201,19 +1201,8 @@ form.addEventListener("submit", async (e) => {
   loading.style.display = "block";
   successMsg.style.display = errorMsg.style.display = "none";
   const plusOne = form.plusOne.value || "Не указано";
-  /* ═══════════════════════════════════════════════════════════════
-   ИНСТРУКЦИЯ: Как подключить Google Таблицу
-   ═══════════════════════════════════════════════════════════════
-   1. Создайте новую Google Таблицу (sheets.google.com)
-   2. Откройте "Расширения" → "Apps Script"
-   3. Удалите весь стандартный код и вставьте код из файла google_apps_script.gs
-   4. Нажмите "Сохранить" (дискетка) и дайте проекту название, например "WeddingRSVP"
-   5. Нажмите "Развернуть" → "Новое развертывание"
-   6. Тип: "Веб-приложение"
-   7. Кто имеет доступ: "Все"
-   8. Нажмите "Развернуть" и подтвердите разрешения
-   9. Скопируйте полученный URL и вставьте ниже вместо ВАШ_URL
-   ═══════════════════════════════════════════════════════════════ */
+  
+   
 const scriptURL = "https://script.google.com/macros/s/AKfycbyM3IL6S31wkmuuO-2IplYcE8oNjkvoq9Fji3N8zmXPa-4S36iOh9z_PvAio_29wQmVFA/exec";
   try {
     if (scriptURL) {
